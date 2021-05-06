@@ -1,0 +1,8 @@
+version: '2.1'
+services:
+  car:
+    container_name: car-cont
+    image: imgcar
+    build: .
+    ports:
+      - '8080:8080'
