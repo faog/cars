@@ -23,6 +23,10 @@ public class Products {
         return this.service.findByColor(color);
     }
 
+    @GetMapping("/car/{id}")
+    public Car carById(@PathVariable String id){
+        return this.service.findById(id);
+    }
     @GetMapping("/cars")
     public List<Car> cart(){
         return this.service.getAllCars();

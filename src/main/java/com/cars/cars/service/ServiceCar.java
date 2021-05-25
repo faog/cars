@@ -23,6 +23,10 @@ public class ServiceCar implements IService{
         return this.repository.findByColor(color);
     }
 
+    public Car findById(String id){
+        return this.repository.findById(id).get();
+    }
+
     public void saveCar(Car car) {
         repository.save(car);
     }
