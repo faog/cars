@@ -1,26 +1,41 @@
 package com.cars.cars.controllers;
 
 import com.cars.cars.controllers.dto.Car;
+import com.cars.cars.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class Products {
-    @GetMapping("/car")
-    public Car cart(@RequestParam String marca){
-        Car car = new Car();
-        car.setColor("rojo");
-        car.setMarca(marca);
-        car.setModelo("RAM100");
-        return car;
+
+    @Autowired
+    private IService service;
+
+    Products(IService service) {
+        this.service = service;
     }
 
-    @PostMapping("cars")
-    public Car cart(@RequestBody Car car){
-        return car;
+    @GetMapping("/cars/{color}")
+    public List<Car> carByColor(@PathVariable String color){
+        return this.service.findByColor(color);
     }
 
+    @GetMapping("/car/{id}")
+    public Car carById(@PathVariable String id){
+        return this.service.findById(id);
+    }
     @GetMapping("/cars")
-    public String car() {
-        return "Hola, soy un car";
+    public List<Car> cart(){
+        return this.service.getAllCars();
     }
+
+    @PostMapping("car")
+    public ResponseEntity<Car> cart(@RequestBody Car car){
+        this.service.saveCar(car);
+        return ResponseEntity.noContent().build();
+    }
+
 }
