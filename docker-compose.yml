@@ -1,8 +1,13 @@
 version: '2.1'
 services:
-  car:
-    container_name: car-cont
-    image: imgcar
-    build: .
+  mongo:
+    image: 'mongo:3.6.8'
+    container_name: 'mongodb-local'
+    environment:
+      - MONGO_INITDB_ROOT_NAME=mongodb-local
+      - MONGO_INITDB_ROOT_USERNAME=productListUser
+      - MONGO_INITDB_ROOT_PASSWORD=productListPassword
+    volumes:
+      - ../products-db/database:/data/db
     ports:
-      - '8080:8080'
+      - '27017:27017'
