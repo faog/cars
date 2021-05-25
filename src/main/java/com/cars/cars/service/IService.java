@@ -8,4 +8,6 @@ public interface IService {
     public void saveCar(Car car);
 
     public List<Car> getAllCars();
+
+    public List<Car> findByColor(String color);
 }

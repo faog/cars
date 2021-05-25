@@ -18,9 +18,13 @@ public class Products {
         this.service = service;
     }
 
+    @GetMapping("/cars/{color}")
+    public List<Car> carByColor(@PathVariable String color){
+        return this.service.findByColor(color);
+    }
+
     @GetMapping("/cars")
     public List<Car> cart(){
-
         return this.service.getAllCars();
     }
 

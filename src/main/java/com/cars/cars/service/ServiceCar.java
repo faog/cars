@@ -19,6 +19,10 @@ public class ServiceCar implements IService{
         return repository.findAll();
     }
 
+    public List<Car> findByColor(String color) {
+        return this.repository.findByColor(color);
+    }
+
     public void saveCar(Car car) {
         repository.save(car);
     }
